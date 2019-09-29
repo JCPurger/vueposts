@@ -4,9 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <c-card></c-card>
+            <c-post-form></c-post-form>
         </div>
     </div>
 </div>
-
 @endsection
