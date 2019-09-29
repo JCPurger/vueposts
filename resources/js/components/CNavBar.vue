@@ -1,7 +1,7 @@
 <template>
 <div>
   <b-navbar toggleable="lg" type="dark">
-    <b-navbar-brand href="#">
+    <b-navbar-brand href="/">
         <img src="/images/logo-white.png" alt="benfeitoria" title="benfeitoria">
     </b-navbar-brand>
 
@@ -46,7 +46,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 nav {
     background-color: var(--main, #e31847);
 }

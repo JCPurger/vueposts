@@ -7,10 +7,12 @@ use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
-      'id' => $faker->uuid,
+      //id' => $faker->uuid, //Use in case of UUID
+      'slug' => $faker->slug,
+      'status' => true,
       'title' => $faker->text($maxNbChars = 250),
       'image' => $faker->imageUrl(),
       'text' => $faker->realText($faker->numberBetween(10,2000)),
-      'user_id' => 1,
+    //   'user_id' => 1,
     ];
 });

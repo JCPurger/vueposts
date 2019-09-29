@@ -8,9 +8,21 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-// let BootstrapVue = require('bootstrap-vue');
 import BootstrapVue from 'bootstrap-vue' 
+
 Vue.use(BootstrapVue);
+
+/**
+ * Set CSRF TOKEN to header of all requests from vue
+ * to laravel
+ */
+
+// let csrfToken = window.axios.defaults.headers.common['X-CSRF-TOKEN'];
+
+// Vue.http.interceptors.push((request, next) => {
+//   request.headers.set('X-CSRF-TOKEN', csrfToken);
+//   next();
+// });
 
 /**
  * The following block of code may be used to automatically register your

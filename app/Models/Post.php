@@ -12,7 +12,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'image', 'text', 'author','user_id'
+        'id', 'slug', 'status', 'title', 'image', 'text', 'user_id'
     ];
 
     /**
@@ -22,6 +22,16 @@ class Post extends Model
      */
     protected $hidden = [];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function author()
     {
       return $this->belongsTo('App\Models\User');
