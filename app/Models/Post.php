@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title', 'image', 'text', 'author',
+        'title', 'image', 'text', 'author','user_id'
     ];
 
     /**
@@ -23,5 +21,10 @@ class Post extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function author()
+    {
+      return $this->belongsTo('App\Models\User');
+    }
 
 }
