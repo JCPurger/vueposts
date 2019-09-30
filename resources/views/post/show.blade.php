@@ -4,9 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1>{{$post->title}}</h1>
-            <b-img src="{{$post->image}}" fluid alt="Responsive image"></b-img>
-            <p>{{$post->text}}</p>
+            <post-show :post="{{$post}}"></post-show>
         </div>
     </div>
 </div>

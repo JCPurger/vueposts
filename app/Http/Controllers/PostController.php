@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Services\Post as PostService;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function __construct()
+    public function __construct(Request $request)
     {
+        $this->_request  = $request;
         $this->middleware('auth')->except(['show']);
     }
 
@@ -38,13 +40,17 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostService $post)
     {
-        // $this->validate($request, [
-        //     'title' => 'required|min:3|max:255',
-        //     'slug' => 'required|min:3|max:255|unique:posts',
-        //     'text' => 'required|min:3'
-        // ]);
+        $post->store($this->_request);
+        
+        if($post){
+            $message = ['success' => 'Post criado com sucesso \o/'];
+        }else{            
+            $message = ['error' => 'Houve algum problema para criar seu post :('];
+        }
+
+        return redirect()->back()->with($message);
     }
 
     /**
@@ -55,6 +61,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // dd($post->author());
         return view('post.show')->with(compact('post'));
     }
 

@@ -14,13 +14,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('status',true)->paginate(20)->toJson();
-
-        // $posts = Post::where('status',true)
-        //     ->take(20)
-        //     ->get()
-        //     ->toJson();
-            
+        $posts = Post::where('status',true)->paginate(19)->toJson();
+        
         return view('home')
             ->with(compact('posts'));
     }

@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/dashboard', 'PostController@create');
+
 Route::resource('posts', 'PostController');
 
 Auth::routes(['register' => false]);

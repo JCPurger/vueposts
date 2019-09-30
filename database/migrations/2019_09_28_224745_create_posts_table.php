@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             // $table->uuid('id')->primary();
             $table->increments('id');
             $table->string('slug')->unique();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->string('title');
             $table->string('image');
             $table->mediumText('text');
