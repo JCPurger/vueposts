@@ -1,35 +1,33 @@
 <template>
 <div class="mt-3">
     <b-pagination-nav 
-        limit="6" 
-        :link-gen="linkGen" 
-        :number-of-pages="pages" 
-        use-router 
-        align="fill">
+      limit="6" 
+      :link-gen="linkGen" 
+      :number-of-pages="pages" 
+      use-router 
+      align="fill">
     </b-pagination-nav>
 
-    <div class="my-3" v-for="(chunk,index) in postsChunked" :key="chunk.id">
-        <b-card v-on:click="redirect(chunk[0].slug)" v-if="index == 0">
-            <b-card-title>{{chunk[0].title}}</b-card-title>
-            <b-card-img-lazy v-bind="imgProps" :src="chunk[0].image" alt="Image" ></b-card-img-lazy>
-            <b-card-text>{{chunk[0].text}}</b-card-text>
-            <!-- <b-card-footer>This is a footer</b-card-footer> -->
+    <div class="my-3">
+      <b-card v-on:click="redirect(firstPost.slug)">
+        <c-card-body :post="firstPost"></c-card-body>
+      </b-card>
+    </div>
+    
+    <div class="my-3" v-for="chunk in postsChunked" :key="chunk.id">
+      <b-card-group deck>
+        <b-card v-on:click="redirect(post.slug)" v-for="post in chunk" :key="post.id">
+          <c-card-body :post="post"></c-card-body>
         </b-card>
-        <b-card-group deck v-else>
-            <b-card v-on:click="redirect(post.slug)" v-for="post in chunk" :key="post.id">
-            <b-card-title>{{post.title}}</b-card-title>
-            <b-card-img-lazy v-bind="imgProps" :src="post.image" alt="Image" ></b-card-img-lazy>
-            <b-card-text>{{post.text}}</b-card-text>
-            </b-card>
-        </b-card-group>
+      </b-card-group>
     </div>
 
     <b-pagination-nav 
-        limit="6" 
-        :link-gen="linkGen" 
-        :number-of-pages="pages" 
-        use-router 
-        align="fill">
+      limit="6" 
+      :link-gen="linkGen" 
+      :number-of-pages="pages" 
+      use-router 
+      align="fill">
     </b-pagination-nav>
 </div>
 </template>
@@ -38,6 +36,7 @@
 export default {
   data() {
     return {
+      firstPost: Object,
       pages: this.posts.last_page,
       currentPage: this.posts.current_page,
       imgProps: {
@@ -46,7 +45,7 @@ export default {
         blank: true,
         blankColor: '#bbb',
         class: 'my-5'
-      }
+      },
     }
   },
   props: {
@@ -54,6 +53,7 @@ export default {
   },
   computed: {
     postsChunked() {
+      this.firstPost = this.posts.data.shift();
       return _.chunk(this.posts.data, 2)
     },
   },
@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .card:hover {
   background-color: #f4f4f4;
   border-color: #d8d7d7;
@@ -80,6 +80,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 400px;
+  text-align: center;
 }
 .card-text {
   white-space: nowrap;
