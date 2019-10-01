@@ -13,3 +13,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.card-title {
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+  text-align: center;
+}
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+}
+</style>

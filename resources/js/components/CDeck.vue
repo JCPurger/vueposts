@@ -68,24 +68,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card:hover {
   background-color: #f4f4f4;
   border-color: #d8d7d7;
   box-shadow: inset 1px -3px 16px 7px #cccccc;
 }
-.card-title {
-  margin: 0 auto;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 400px;
-  text-align: center;
-}
-.card-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 400px;
-}
+
 </style>
